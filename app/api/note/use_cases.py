@@ -68,12 +68,10 @@ class ReadAllNote:
         filter_user: bool
     ) -> (list[dict], PaginationMetaResponse):
         with self.session as session:
-            total_item = session.execute(
+            total_item = (
                 select(func.count())
-                .select_from(Note).where(
-                    (Note.created_by == user_id) & (Note.deleted_at == None)
-                )
-            ).scalar()
+                .select_from(Note)
+            )
 
             query = (
                 select(Note)
@@ -82,11 +80,14 @@ class ReadAllNote:
             )
 
             if filter_user:
+                total_item = total_item.filter(Note.created_by == user_id)
                 query = query.filter(Note.created_by == user_id)
 
             if not include_deleted:
+                total_item = total_item.filter(Note.deleted_at == None)
                 query = query.filter(Note.deleted_at == None)
 
+            total_item = session.execute(total_item).scalar()
             paginated_query = session.execute(query).scalars().all()
 
             notes = [NoteSchema.from_orm(p).__dict__ for p in paginated_query]
@@ -152,5 +153,7 @@ class DeleteNote:
 
             note.deleted_at = datetime.datetime.utcnow()
             note.deleted_by = user_id
+
+            session.flush()
             return NoteSchema.from_orm(note)
         
