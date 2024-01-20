@@ -86,7 +86,6 @@ class ReadAllNote:
 
             if not include_deleted:
                 query = query.filter(Note.deleted_at == None)
-            print(query)
 
             paginated_query = session.execute(query).scalars().all()
 
