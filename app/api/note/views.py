@@ -22,7 +22,7 @@ from .use_cases import CreateNote, ReadOneNote, UpdateNote, DeleteNote, ReadAllN
 router = Blueprint("notes", __name__, url_prefix='/api/v1/notes')
 logger = logging.getLogger(__name__)
 
-@router.route("/", methods=['POST'])
+@router.route("", methods=['POST'])
 @validate()
 def create(body: CreateNoteRequest,) -> CreateNoteResponse:
     try:
@@ -87,7 +87,7 @@ def read_one(note_id: int):
             data=None
         ).__dict__), 500
 
-@router.route("/", methods=["GET"])
+@router.route("", methods=["GET"])
 @validate()
 def read_all(query: ReadAllNoteRequest) -> ReadAllNoteResponse:
     try:
