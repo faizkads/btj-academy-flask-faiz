@@ -83,7 +83,7 @@ The complete documentation of Note CRUD request and its example responses can be
 ## Endpoints
 ### `/api/v1/notes`
 Methods:
-- POST  : Hitting the endpoint with method **POST** is used to **CREATE A NEW NOTE**. The request should also includes a **[ Request Body]()** containing title and content.
+- POST  : Hitting the endpoint with method **POST** is used to **CREATE A NEW NOTE**. The request should also includes a **[ Request Body](https://github.com/faizkads/btj-academy-python-flask-faiz/blob/main/README.md#request-body)** containing title and content.
 
 - GET : Hitting the endpoint with method **GET** is used to retrieve the list of notes in the database. This method implements parameter value for pagination and the notes. The parameters are:
   - page (int) : to retrieve data on a certain page from the pagination (default 1)
@@ -96,7 +96,7 @@ The endpoint of `<note_id>` can only be accessed by users associated (created) t
 
 Methods:
 - GET : Hitting the endpoint with the specified `<note_id>` and method **GET** will retrieve a note corresponding to the `<note_id>`
-- PUT: Hitting the endpoint with the specified `<note_id>` and method **PUT** will update a note corresponding to the `<note_id>`. The request should also includes a **[ Request Body]()** containing title and content.
+- PUT: Hitting the endpoint with the specified `<note_id>` and method **PUT** will update a note corresponding to the `<note_id>`. The request should also includes a **[ Request Body](https://github.com/faizkads/btj-academy-python-flask-faiz/blob/main/README.md#request-body)** containing title and content.
 - DELETE: Hitting the endpoint with the specified `<note_id>` and method **DELETE** will delete (soft-delete) a note corresponding to the `<note_id>`
 
 ### Request Body
